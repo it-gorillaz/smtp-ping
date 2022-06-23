@@ -65,11 +65,11 @@ The code above will produce the following result:
 | error          | Error object                 | None               | Error object containing the details of the exception        | 
 | commandHistory | [{command, response, code}]  | None               | Array of objects containing the SMTP commands and responses |
 
-The ```complete``` attribute will be considered ```false``` whenever the ping flow is interrupted(Idle Timeout, Transmission error, etc).
+The ```complete``` attribute will be ```false``` if the ping flow is interrupted(Idle Timeout, Transmission error, etc).
 
-The ```status``` attribute will be considered ```UNKNOWN``` when the SMTP pipeline(exchanging messages with the server) was not able to be completed(Idle Timeout, Transmission error, Connection closed by the server, etc).
+The ```status``` attribute will be ```UNKNOWN``` if the SMTP pipeline(exchanging messages with the server) is not able to be completed(Idle Timeout, Transmission error, Connection closed by the server, etc).
 
-The ```status``` attribute will be ```INVALID``` when the client is unable to find/connect to the mail exchanger host or when the mail exchanger server explicitly informs the email is not valid.
+The ```status``` attribute will be ```INVALID``` if the client is unable to find/connect to the mail exchanger host or the mail exchanger server explicitly informs the email is not valid.
 
 
 ## License
