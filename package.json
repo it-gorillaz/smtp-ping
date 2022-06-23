@@ -1,0 +1,27 @@
+{
+  "name": "smtp-ping",
+  "version": "1.0.0",
+  "description": "Verify an email address through SMTP ping",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-gorillaz/smtp-ping.git"
+  },
+  "keywords": [
+    "smtp",
+    "email",
+    "ping"
+  ],
+  "author": "tommelo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/it-gorillaz/smtp-ping/issues"
+  },
+  "homepage": "https://github.com/it-gorillaz/smtp-ping#readme",
+  "dependencies": {
+    "promise-socket": "^7.0.0"
+  }
+}
