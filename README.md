@@ -38,9 +38,9 @@ The code above will produce the following result:
   sender:         string,
   recipient:      string,
   fqdn:           string,
-  host:           string
-  port:           25,
-  timeout:        3000,
+  host:           string,
+  port:           number,
+  timeout:        number,
   error:          <Error Object> | undefined,
   commandHistory: [
     { 
