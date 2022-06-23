@@ -1,7 +1,7 @@
 const { resolveMx }                   = require('dns').promises;
 const { PromiseSocket, TimeoutError } = require('promise-socket');
 
-const DEFAULT_SETTINGS = { port: 25, timeout: 3 };
+const DEFAULT_SETTINGS = { port: 25, timeout: 3000 };
 const MAIL_PROVIDERS   = ['gmail.com', 'yahoo.com', 'aol.com', 'outlook.com'];
 const SmtpPingStatus   = { OK: 'OK', INVALID: 'INVALID', UNKNOWN: 'UNKNOWN' };
 const SmtpStatusCode   = { READY: 220, OK: 250 };
