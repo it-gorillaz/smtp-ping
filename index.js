@@ -120,6 +120,7 @@ async function ping(recipient, config) {
     status,
     sender,
     recipient,
+    fqdn,
     host,
     port,
     timeout,
