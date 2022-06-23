@@ -46,10 +46,9 @@ const smtpPipeline = [
     const data = await socket.read();
     const response = buildSmtpResponse(null, data.toString());
     commandHistory.push(response);
-    if (SmtpStatusCode.READY !== response.code) {
-      return { complete: false, status: SmtpPingStatus.UNKNOWN }
-    }
-    return await next();
+    return SmtpStatusCode.READY === response.code
+      ? await next()
+      : { complete: false, status: SmtpPingStatus.UNKNOWN };
   },
 
   async({ socket, commandHistory, sender, next }) => {
@@ -58,10 +57,9 @@ const smtpPipeline = [
     const data = await socket.read();
     const response = buildSmtpResponse(command, data.toString());
     commandHistory.push(response);
-    if (SmtpStatusCode.OK !== response.code) {
-      return { complete: false, status: SmtpPingStatus.UNKNOWN };
-    }
-    return await next();
+    return SmtpStatusCode.OK === response.code
+      ? await next()
+      : { complete: false, status: SmtpPingStatus.UNKNOWN };
   },
 
   async({ socket, commandHistory, sender, next }) => {
@@ -70,10 +68,9 @@ const smtpPipeline = [
     const data = await socket.read();
     const response = buildSmtpResponse(command, data.toString());
     commandHistory.push(response);
-    if (SmtpStatusCode.OK !== response.code) {
-      return { complete: false, status: SmtpPingStatus.UNKNOWN };
-    }
-    return await next();
+    return SmtpStatusCode.OK === response.code
+      ? await next()
+      : { complete: false, status: SmtpPingStatus.UNKNOWN };
   },
 
   async({ socket, commandHistory, recipient }) => {
@@ -82,7 +79,12 @@ const smtpPipeline = [
     const data = await socket.read();
     const response = buildSmtpResponse(command, data.toString());
     commandHistory.push(response);
-    return { complete: true, status: SmtpStatusCode.OK === response.code ? SmtpPingStatus.OK : SmtpPingStatus.INVALID };
+    return { 
+      complete: true, 
+      status: SmtpStatusCode.OK === response.code 
+        ? SmtpPingStatus.OK 
+        : SmtpPingStatus.INVALID 
+    };
   }
 
 ];
