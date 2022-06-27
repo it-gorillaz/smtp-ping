@@ -105,7 +105,8 @@ async function ping(recipient, config) {
     host = await findMailExchangerHost(fqdn);
 
     socket = new PromiseSocket();
-    await socket.connect({ host, port, timeout });
+    socket.setTimeout(timeout);
+    await socket.connect({ host, port });
     
     ({ complete, status } = await executePipeline(smtpPipeline, { socket, sender, recipient, commandHistory }));
 
