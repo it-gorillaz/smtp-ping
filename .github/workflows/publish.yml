@@ -5,8 +5,8 @@ on:
     types: [created]
 
 jobs:
-  build:
-    name: build
+  publish:
+    name: publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,10 +22,6 @@ jobs:
         run: npm run coverage
       - name: Run integration tests
         run: npm run integration
-  publish:
-    name: publish
-    needs: build
-    steps:
       - name: Publish to npm
         run: npm publish
         env:
