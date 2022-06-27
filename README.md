@@ -13,7 +13,7 @@ npm install --save smtp-ping
 ```
 
 ## Usage
-```
+```js
 const { ping, SmtpPingStatus } = require('smtp-ping');
 
 ping('any@email.com')
@@ -22,7 +22,7 @@ ping('any@email.com')
 ```
 
 Overriding the default settings:
-```
+```js
 const { ping, SmtpPingStatus } = require('smtp-ping');
 
 const config = { sender: 'sender@email.com', port: 26, timeout: 5000 };
@@ -65,12 +65,19 @@ The code above will produce the following result:
 | error          | Error object                 | None               | Error object containing the details of the exception        | 
 | commandHistory | [{command, response, code}]  | None               | Array of objects containing the SMTP commands and responses |
 
-The ```complete``` attribute will be ```false``` if the ping flow is interrupted(Idle Timeout, Transmission error, etc).
+The ```complete``` attribute will only be ```true``` in two scenarios: 
 
-The ```status``` attribute will be ```UNKNOWN``` if the SMTP pipeline(exchanging messages with the server) is not able to be completed(Idle Timeout, Transmission error, Connection closed by the server, etc).
+1. Mail exchanger host not found(no MX record found) or client not able to connect to mail exchanger server.
 
-The ```status``` attribute will be ```INVALID``` if the client is unable to find/connect to the mail exchanger host or the mail exchanger server explicitly informs the email is not valid.
+2. SMTP ping flow is complete(sending and receiving SMTP commands).
 
+The ```status``` attribute will be:
+
+```OK``` - Only if the smtp server explicitly confirm the availability of the mailbox address;
+
+```INVALID``` - Only if the smtp server explicitly conform the mailbox is invalid/unavailable;
+
+ ```UNKNOWN``` - For every other scenario(Idle Timeout, Transmission error, Connection closed by the server, etc).
 
 ## License
 
