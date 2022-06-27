@@ -4,7 +4,7 @@ const { PromiseSocket, TimeoutError } = require('promise-socket');
 const DEFAULT_SETTINGS = { port: 25, timeout: 3000 };
 const MAIL_PROVIDERS   = ['gmail.com', 'yahoo.com', 'aol.com', 'outlook.com'];
 const SmtpPingStatus   = { OK: 'OK', INVALID: 'INVALID', UNKNOWN: 'UNKNOWN' };
-const SmtpStatusCode   = { READY: 220, OK: 250 };
+const SmtpStatusCode   = { READY: 220, OK: 250, MAILBOX_UNAVAILABLE: 550 };
 
 // -- utils --
 const after       = (str, char) => str.substring(str.lastIndexOf(char) + 1);
@@ -79,11 +79,12 @@ const smtpPipeline = [
     const data = await socket.read();
     const response = buildSmtpResponse(command, data.toString());
     commandHistory.push(response);
-    return { 
-      complete: true, 
-      status: SmtpStatusCode.OK === response.code 
-        ? SmtpPingStatus.OK 
-        : SmtpPingStatus.INVALID 
+    return {
+      complete: true,
+      status: { 
+        [SmtpStatusCode.OK]:                  SmtpPingStatus.OK, 
+        [SmtpStatusCode.MAILBOX_UNAVAILABLE]: SmtpPingStatus.INVALID  
+      } [response.code] || SmtpPingStatus.UNKNOWN   
     };
   }
 
