@@ -1,0 +1,46 @@
+{
+  "name": "smtp-ping",
+  "version": "1.0.0",
+  "description": "Verify an email address through SMTP ping",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha './tests/unit.test.js'",
+    "integration": "mocha './tests/integration.test.js'",
+    "coverage": "nyc --reporter html --reporter text npm test"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": true,
+    "excludeNodeModules": true,
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80,
+    "include": ["*.js"],
+    "exclude": ["*test.js"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-gorillaz/smtp-ping.git"
+  },
+  "keywords": [
+    "smtp",
+    "email",
+    "ping"
+  ],
+  "author": "Tom Melo <tom@itgorillaz.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/it-gorillaz/smtp-ping/issues"
+  },
+  "homepage": "https://github.com/it-gorillaz/smtp-ping#readme",
+  "dependencies": {
+    "promise-socket": "^7.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "sinon": "^14.0.0"
+  }
+}
