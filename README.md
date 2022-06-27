@@ -73,11 +73,11 @@ The ```complete``` attribute will only be ```true``` in two scenarios:
 
 The ```status``` attribute will be:
 
-```OK``` - Only if the smtp server explicitly confirm the availability of the mailbox address;
+```OK``` - Only if the smtp server explicitly confirms the availability of the mailbox address;
 
-```INVALID``` - Only if the smtp server explicitly conform the mailbox is invalid/unavailable;
+```INVALID``` - If the smtp server explicitly confirms the mailbox is unavailable or if the client is unable to connect to the mail exchanger server;
 
- ```UNKNOWN``` - For every other scenario(Idle Timeout, Transmission error, Connection closed by the server, etc).
+ ```UNKNOWN``` - For every other scenario(Idle Timeout, Transmission error, Connection closed before completing the smtp pipeline, etc).
 
 ## License
 
