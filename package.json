@@ -28,7 +28,7 @@
     "email",
     "ping"
   ],
-  "author": "tommelo",
+  "author": "Tom Melo <tom@itgorillaz.com.br>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/it-gorillaz/smtp-ping/issues"
